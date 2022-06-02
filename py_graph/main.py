@@ -36,7 +36,7 @@ portsModule.Port(Arduino)
 #Opening the Serial port
 Arduino.open()
 
-fig, ax = plt.subplots(2, tight_layout = True, figsize= (12,8))
+fig, ax = plt.subplots(2, constrained_layout = True, figsize= (8,6))
 fig.suptitle("Temperature and Humidity of Remote Sensor", weight = 700, fontproperties = {'family' : 'sans-serif', 'size' : 'x-large', 'stretch' : 500})
 
 
@@ -102,15 +102,15 @@ def graph_animate(i):
         ax[1].set_title(label = "Recorded Live Percentage of Humidity")
 
         ax[0].set_xlim(xmin =0)
-        ax[0].set_ylim(top=100)
+        ax[0].set_ylim(ymin=15, ymax =35)
 
         ax[1].set_xlim(xmin = 0)
         ax[1].set_ylim(top = 100)
 
-        ax[0].set_yticks(np.arange(0,101,5))
+        ax[0].set_yticks(np.arange(15,36, 1))
         ax[1].set_yticks(np.arange(0, 101, 5))
 
-        ax[0].set_xticks(np.arange(0, 101, 5))
+        ax[0].set_xticks(np.arange(0, 51, 5))
         ax[1].set_xticks(np.arange(0, 101, 5))
 
         ax[0].minorticks_on()
@@ -122,6 +122,8 @@ def graph_animate(i):
 
         ax[0].plot(gtemp_val, color = 'k')
         ax[1].plot(ghumid_val, color= 'k')
+
+
         plt.pause(0.001)
 
         counter += 1
